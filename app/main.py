@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 from app.model.model import get_predict
@@ -22,6 +23,5 @@ def home():
 
 @app.post("/predict", response_model=Out)
 def predict(payload: In):
-    result = get_predict(payload.text)
-    return {"result": result}
-
+    language = get_predict(payload.text)
+    return {"language": language}
